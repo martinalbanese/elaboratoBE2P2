@@ -1,0 +1,10 @@
+spring:
+  application.name: elaboratobe2p2
+  datasource:
+    url: jdbc:mysql://localhost:3306/esami
+    username: test
+    password: test
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
