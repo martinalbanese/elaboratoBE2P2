@@ -10,11 +10,13 @@ import it.ttf.elaboratobe2p2.entities.Corso;
 import it.ttf.elaboratobe2p2.entities.Prova;
 import it.ttf.elaboratobe2p2.entities.Studente;
 import it.ttf.elaboratobe2p2.repositories.ProvaRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * Servizio per la gestione delle prove d'esame.
  * Fornisce metodi per salvare, recuperare e analizzare le prove degli studenti.
 */
+@Service
 public class ProvaService {
     @Autowired
     private ProvaRepository provaRepository;
@@ -44,7 +46,7 @@ public class ProvaService {
 
     /**
      * Calcola la media dei voti di uno studente.
-     * @param studente Lo studente di cui calcolare la media
+     * @param-studente Lo studente di cui calcolare la media
      * @return La media dei voti dello studente
     */
     public double calcolaMedia(List<Prova> prove) {
