@@ -23,9 +23,6 @@ public class Elaboratobe2p2Application implements CommandLineRunner {
 	@Autowired
 	private StudenteRepository studenteRepository;
 
-	@Autowired
-	private CorsoRepository corsoRepository;
-
 	public static void main(String[] args) {
 		SpringApplication.run(Elaboratobe2p2Application.class, args);
 	}
@@ -34,14 +31,14 @@ public class Elaboratobe2p2Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// Recupero dallo script SQL
 		Studente s1 = studenteRepository.findById(1L).orElseThrow();
-		Corso c1 = corsoRepository.findById(1L).orElseThrow(); // Backend
-		Corso c2 = corsoRepository.findById(2L).orElseThrow(); // Basi di dati
-		Corso c3 = corsoRepository.findById(3L).orElseThrow(); // Frontend
+		//Corso c1 = corsoRepository.findById(1L).orElseThrow(); // Backend
+		//Corso c2 = corsoRepository.findById(2L).orElseThrow(); // Basi di dati
+		//Corso c3 = corsoRepository.findById(3L).orElseThrow(); // Frontend
 
 		// Salvataggio prove
-		provaService.save(s1, c1, 28); // superato
-		provaService.save(s1, c2, 15); // non superato
-		provaService.save(s1, c3, 10); // non superato
+		//provaService.save(s1, c1, 28); // superato
+		//provaService.save(s1, c2, 15); // non superato
+		//provaService.save(s1, c3, 10); // non superato
 
 		// Recupero prove
 		List<Prova> proveMartina = provaService.getProveByStudente(s1);

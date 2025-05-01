@@ -23,6 +23,7 @@ public class ProvaService {
 
     /**
      * Salva una nuova prova d'esame nel sistema.
+     * Controlla che non sia già presente una prova per lo stesso studente e corso.
      * @param studente Lo studente che ha sostenuto la prova
      * @param corso Il corso per cui è stata sostenuta la prova
      * @param voto Il voto ottenuto (deve essere compreso tra 0 e 30)
@@ -30,6 +31,13 @@ public class ProvaService {
      * @throws IllegalArgumentException se il voto non è compreso tra 0 e 30
     */
     public Prova save(Studente studente, Corso corso, int voto) {
+        Date oggi = new Date();
+        List<Prova> proveEsistenti = provaRepository.findByStudenteAndCorso(studente, corso);
+        for (Prova p : proveEsistenti) {
+            if (p.getData().equals(oggi)) {
+                throw new IllegalArgumentException("Esiste già una prova oggi per questo corso e studente");
+            }
+        }
         Prova prova = new Prova(voto, new Date(), studente, corso);
         provaRepository.save(prova);
         return prova;
@@ -46,7 +54,7 @@ public class ProvaService {
 
     /**
      * Calcola la media dei voti di uno studente.
-     * @param-studente Lo studente di cui calcolare la media
+     * @param prove Lista delle prove sostenute dallo studente
      * @return La media dei voti dello studente
     */
     public double calcolaMedia(List<Prova> prove) {
@@ -79,5 +87,14 @@ public class ProvaService {
         }
 
         return nonSuperati;
+    }
+
+    /**
+     * Recupera tutte le prove sostenute da uno studente ordinate per data.
+     * @param studente Lo studente di cui recuperare le prove
+     * @return Lista delle prove sostenute dallo studente ordinate per data
+     */
+    public List<Prova> getProveOrdinatePerStudente(Studente studente) {
+        return provaRepository.findByStudenteOrderByDataAsc(studente);
     }
 }
