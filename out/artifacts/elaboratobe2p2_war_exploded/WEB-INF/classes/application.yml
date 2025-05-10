@@ -1,0 +1,12 @@
+spring:
+  application.name: elaboratobe2p2
+  datasource:
+    url: jdbc:mysql://localhost:3306/esami
+    username: test
+    password: test
+  jpa:
+    hibernate:
+      ddl-auto: update
+  web:
+    resources:
+      add-mappings: true

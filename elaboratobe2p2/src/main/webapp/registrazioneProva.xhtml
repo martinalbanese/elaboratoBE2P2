@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+> <!--  xmlns:p="http://primefaces.org/ui"-->
+
+<!-- TODO: Integrare Primefaces per usare componenti avanzati  -->
+
+<h:head>
+    <title>Registrazione Prova</title>
+    <style>
+        label {
+            display: inline-block;
+            width: 100px;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"], select {
+            padding: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .messages {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+
+        .messages li {
+            padding: 8px;
+            margin-bottom: 5px;
+            border-radius: 4px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+
+    <h:form>
+        <h2>Registrazione Prova</h2>
+
+        <div>
+            <h:outputLabel for="studente" value="Studente:" />
+            <h:selectOneMenu id="studente" value="#{provaBean.studenteId}">
+                <f:selectItems value="#{provaBean.studenti}" var="s"
+                               itemLabel="#{s.nome}" itemValue="#{s.id}" />
+            </h:selectOneMenu>
+        </div>
+
+        <div>
+            <h:outputLabel for="corso" value="Corso:" />
+            <h:selectOneMenu id="corso" value="#{provaBean.corsoId}">
+                <f:selectItems value="#{provaBean.corsi}" var="c"
+                               itemLabel="#{c.nome}" itemValue="#{c.id}" />
+            </h:selectOneMenu>
+        </div>
+
+        <div>
+            <h:outputLabel for="voto" value="Voto:" />
+            <h:inputText id="voto" value="#{provaBean.voto}" />
+        </div>
+
+        <div>
+            <h:commandButton value="Salva Prova" action="#{provaBean.registraProva}" />
+            <br />
+            <br />
+            <h:commandButton value="Verifica Stato Studenti" action="verificaStato.xhtml?faces-redirect=true" />
+        </div>
+
+        <h:messages />
+    </h:form>
+</h:body>
+</html>

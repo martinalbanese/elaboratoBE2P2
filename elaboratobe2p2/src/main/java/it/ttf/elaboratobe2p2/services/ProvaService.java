@@ -27,29 +27,27 @@ public class ProvaService {
      * @param studente Lo studente che ha sostenuto la prova
      * @param corso Il corso per cui è stata sostenuta la prova
      * @param voto Il voto ottenuto (deve essere compreso tra 0 e 30)
-     * @return La prova salvata
      * @throws IllegalArgumentException se il voto non è compreso tra 0 e 30
     */
-    public Prova save(Studente studente, Corso corso, int voto) {
+    public void save(Studente studente, Corso corso, int voto) {
         Date oggi = new Date();
-        List<Prova> proveEsistenti = provaRepository.findByStudenteAndCorso(studente, corso);
+        List<Prova> proveEsistenti = provaRepository.findByStudenteIdAndCorsoId(studente.getId(), corso.getId());
         for (Prova p : proveEsistenti) {
             if (p.getData().equals(oggi)) {
                 throw new IllegalArgumentException("Esiste già una prova oggi per questo corso e studente");
             }
         }
-        Prova prova = new Prova(voto, new Date(), studente, corso);
+        Prova prova = new Prova(voto, oggi, studente, corso);
         provaRepository.save(prova);
-        return prova;
     }
 
     /**
      * Recupera tutte le prove sostenute da uno studente.
-     * @param studente Lo studente di cui recuperare le prove
+     * @param studenteId Lo studente di cui recuperare le prove
      * @return Lista delle prove sostenute dallo studente
     */
-    public List<Prova> getProveByStudente(Studente studente) {
-        return provaRepository.findByStudente(studente);
+    public List<Prova> getProveByStudenteId(Long studenteId) {
+        return provaRepository.findByStudenteId(studenteId);
     }
 
     /**
@@ -59,16 +57,20 @@ public class ProvaService {
     */
     public double calcolaMedia(List<Prova> prove) {
         if (prove == null || prove.isEmpty()) {
-            return 0.0;
+            return 0;
         }
 
-        int somma = 0;
+        double somma = 0;
         for (Prova p : prove) {
             somma += p.getVoto();
         }
 
         // calcolo la media dividendo la somma per il numero totale di prove
-        return somma / (double) prove.size();
+        return somma / prove.size();
+    }
+
+    public List<Prova> getAllProve() {
+        return provaRepository.findAll();
     }
 
     /**
@@ -78,7 +80,7 @@ public class ProvaService {
      */
     public List<Corso> corsiNonSuperati(Studente studente) {
         List<Corso> nonSuperati = new ArrayList<>();
-        List<Prova> prove = getProveByStudente(studente);
+        List<Prova> prove = provaRepository.findByStudenteId(studente.getId());
 
         for (Prova p : prove) {
             if (!p.isSuperata()) {
@@ -95,6 +97,6 @@ public class ProvaService {
      * @return Lista delle prove sostenute dallo studente ordinate per data
      */
     public List<Prova> getProveOrdinatePerStudente(Studente studente) {
-        return provaRepository.findByStudenteOrderByDataAsc(studente);
+        return provaRepository.findByStudenteIdOrderByDataAsc(studente.getId());
     }
 }

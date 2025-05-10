@@ -4,6 +4,7 @@ import java.util.List;
 
 import it.ttf.elaboratobe2p2.repositories.CorsoRepository;
 import it.ttf.elaboratobe2p2.repositories.StudenteRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +16,7 @@ import it.ttf.elaboratobe2p2.entities.Studente;
 import it.ttf.elaboratobe2p2.services.ProvaService;
 
 @SpringBootApplication
+@Slf4j
 public class Elaboratobe2p2Application implements CommandLineRunner {
 
 	@Autowired
@@ -27,31 +29,19 @@ public class Elaboratobe2p2Application implements CommandLineRunner {
 		SpringApplication.run(Elaboratobe2p2Application.class, args);
 	}
 
-	@Override
 	public void run(String... args) throws Exception {
-		// Recupero dallo script SQL
-		Studente s1 = studenteRepository.findById(1L).orElseThrow();
-		//Corso c1 = corsoRepository.findById(1L).orElseThrow(); // Backend
-		//Corso c2 = corsoRepository.findById(2L).orElseThrow(); // Basi di dati
-		//Corso c3 = corsoRepository.findById(3L).orElseThrow(); // Frontend
+		Studente studente = studenteRepository.findById(1L).orElseThrow();
+        log.info("Studente trovato: {} {}", studente.getNome(), studente.getCognome());
 
-		// Salvataggio prove
-		//provaService.save(s1, c1, 28); // superato
-		//provaService.save(s1, c2, 15); // non superato
-		//provaService.save(s1, c3, 10); // non superato
+		List<Prova> proveStudente = provaService.getProveByStudenteId(studente.getId());
 
-		// Recupero prove
-		List<Prova> proveMartina = provaService.getProveByStudente(s1);
+		double media = provaService.calcolaMedia(proveStudente);
+        log.info("Media voti Martina: {}", media);
 
-		// Media
-		double media = provaService.calcolaMedia(proveMartina);
-		System.out.println("Media voti Martina: " + media);
-
-		// Corsi non superati
-		List<Corso> nonSuperati = provaService.corsiNonSuperati(s1);
-		System.out.println("Corsi non superati:");
+		List<Corso> nonSuperati = provaService.corsiNonSuperati(studente);
+		log.info("Corsi non superati:");
 		for (Corso corso : nonSuperati) {
-			System.out.println("- " + corso.getNome());
+            log.info("- {}", corso.getNome());
 		}
 	}
 }

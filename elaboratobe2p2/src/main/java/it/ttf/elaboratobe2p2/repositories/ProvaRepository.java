@@ -11,8 +11,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProvaRepository extends JpaRepository<Prova, Long> {
-    List<Prova> findByStudente(Studente studente) ;
-    List<Prova> findByCorso(Corso corso);
-    List<Prova> findByStudenteAndCorso(Studente studente, Corso corso);
-    List<Prova> findByStudenteOrderByDataAsc(Studente studente);
+    List<Prova> findByStudenteId(Long studenteId) ;
+    List<Prova> findByCorsoId(Long corsoId);
+    List<Prova> findByStudenteIdAndCorsoId(Long studenteId, Long corsoId);
+    List<Prova> findByStudenteIdOrderByDataAsc(Long studenteId);
 }

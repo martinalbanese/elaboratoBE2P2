@@ -22,4 +22,5 @@ public class Corso {
     private Long id;
 
     private String nome;
+    private String sigla;
 }
