@@ -63,13 +63,18 @@ public class ProvaBean {
         Corso corso = corsoRepository.findById(corsoId).orElseThrow(() ->
                 new RuntimeException("Corso non trovato"));
 
-        provaService.save(studente, corso, voto);
+        String errore = provaService.save(studente, corso, voto);
 
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Prova registrata con successo", null));
-
-        studenteId = null;
-        corsoId = null;
-        voto = 0;
+        if (errore != null) {
+            // Se c’è errore, mostra messaggio di errore
+            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, errore, null));
+        } else {
+            // Se successo, messaggio di conferma
+            context.addMessage(null, new FacesMessage("Prova registrata con successo", null));
+            studenteId = null;
+            corsoId = null;
+            voto = 0;
+        }
     }
 }

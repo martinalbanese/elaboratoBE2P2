@@ -1,8 +1,6 @@
 package it.ttf.elaboratobe2p2.services;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,6 +19,24 @@ public class ProvaService {
     @Autowired
     private ProvaRepository provaRepository;
 
+    /*
+     * Metodo privato per confrontare solo la parte "data" (giorno, mese, anno) di due date
+     * @param d1 Prima data da confrontare
+     * @param d2 Seconda data da confrontare
+     * @return true se le due date sono nella stessa giornata, false altrimenti
+     */
+    private boolean stessaData(Date d1, Date d2) {
+        Calendar c1 = Calendar.getInstance();
+        c1.setTime(d1);
+
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(d2);
+
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR)
+                && c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH)
+                && c1.get(Calendar.DAY_OF_MONTH) == c2.get(Calendar.DAY_OF_MONTH);
+    }
+
     /**
      * Salva una nuova prova d'esame nel sistema.
      * Controlla che non sia già presente una prova per lo stesso studente e corso.
@@ -29,16 +45,22 @@ public class ProvaService {
      * @param voto Il voto ottenuto (deve essere compreso tra 0 e 30)
      * @throws IllegalArgumentException se il voto non è compreso tra 0 e 30
     */
-    public void save(Studente studente, Corso corso, int voto) {
+    public String save(Studente studente, Corso corso, int voto) {
+        // Controllo voto valido
+        if (voto < 0 || voto > 31) {
+            return "Il voto deve essere compreso tra 0 e 31";
+        }
+
         Date oggi = new Date();
         List<Prova> proveEsistenti = provaRepository.findByStudenteIdAndCorsoId(studente.getId(), corso.getId());
         for (Prova p : proveEsistenti) {
-            if (p.getData().equals(oggi)) {
-                throw new IllegalArgumentException("Esiste già una prova oggi per questo corso e studente");
+            if (stessaData(p.getData(), oggi)) {
+                return "Prova già esistente per oggi";
             }
         }
         Prova prova = new Prova(voto, oggi, studente, corso);
         provaRepository.save(prova);
+        return null;
     }
 
     /**
@@ -79,15 +101,29 @@ public class ProvaService {
      * @return Lista dei corsi non ancora superati
      */
     public List<Corso> corsiNonSuperati(Studente studente) {
-        List<Corso> nonSuperati = new ArrayList<>();
-        List<Prova> prove = provaRepository.findByStudenteId(studente.getId());
+        // Recupera tutte le prove dello studente, ordinate per data crescente
+        List<Prova> prove = provaRepository.findByStudenteIdOrderByDataAsc(studente.getId());
 
-        for (Prova p : prove) {
-            if (!p.isSuperata()) {
-                nonSuperati.add(p.getCorso());
+        // Mappa che tiene solo l'ultima prova per ogni corso (id corso -> prova)
+        Map<Long, Prova> ultimaProvaPerCorso = new HashMap<>();
+
+        for (Prova p: prove) {
+            Long corsoId = p.getCorso().getId();
+            // Se non esiste ancora una prova per questo corso o se la prova corrente è più
+            // recente, aggiorna
+            if (!ultimaProvaPerCorso.containsKey(corsoId)
+                    || p.getData().after(ultimaProvaPerCorso.get(corsoId).getData())) {
+                ultimaProvaPerCorso.put(corsoId, p);
             }
         }
+        List<Corso> nonSuperati = new ArrayList<>();
 
+        // Verifica se l'ultima prova per ogni corso è superata
+        for (Prova ultima : ultimaProvaPerCorso.values()) {
+            if (!ultima.isSuperata()) {
+                nonSuperati.add(ultima.getCorso());
+            }
+        }
         return nonSuperati;
     }
 

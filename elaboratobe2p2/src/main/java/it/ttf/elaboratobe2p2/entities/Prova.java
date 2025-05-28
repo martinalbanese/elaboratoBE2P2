@@ -42,16 +42,12 @@ public class Prova {
 
     /**
      * Costruttore per creare una nuova prova.
-     * @param voto Il voto ottenuto (deve essere compreso tra 0 e 31)
+     * @param voto Il voto ottenuto
      * @param data La data in cui è stata sostenuta la prova
      * @param studente Lo studente che ha sostenuto la prova
      * @param corso Il corso per cui è stata sostenuta la prova
-     * @throws IllegalArgumentException se il voto non è compreso tra 0 e 31
      */
     public Prova(int voto, Date data, Studente studente, Corso corso) {
-        if (voto < 0 || voto > 31) {
-            throw new IllegalArgumentException("Il voto deve essere compreso tra 0 e 31");
-        }
         this.voto = voto;
         this.data = data;
         this.studente = studente;
