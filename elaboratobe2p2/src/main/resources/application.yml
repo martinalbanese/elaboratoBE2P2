@@ -10,3 +10,7 @@ spring:
   web:
     resources:
       add-mappings: true
+
+joinfaces:
+  primefaces:
+    theme: saga
