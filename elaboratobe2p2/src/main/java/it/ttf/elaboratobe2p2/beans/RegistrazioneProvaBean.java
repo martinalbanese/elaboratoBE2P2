@@ -47,8 +47,11 @@ public class ProvaBean {
      */
     @PostConstruct
     public void init() {
-        studenti = studenteRepository.findAll();
         corsi = corsoRepository.findAll();
+    }
+
+    public List<Studente> getStudenti() {
+        return studenteRepository.findAllByOrderByCognomeAscNomeAsc();
     }
 
     /**
