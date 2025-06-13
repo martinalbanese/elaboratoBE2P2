@@ -46,19 +46,18 @@ public class ProvaService {
      * @throws IllegalArgumentException se il voto non è compreso tra 0 e 30
     */
     public String save(Studente studente, Corso corso, int voto) {
-        // Controllo voto valido
         if (voto < 0 || voto > 31) {
             return "Il voto deve essere compreso tra 0 e 31";
         }
 
-        Date oggi = new Date();
         List<Prova> proveEsistenti = provaRepository.findByStudenteIdAndCorsoId(studente.getId(), corso.getId());
-        for (Prova p : proveEsistenti) {
-            if (stessaData(p.getData(), oggi)) {
-                return "Prova già esistente per oggi";
-            }
+        boolean giaSuperata = proveEsistenti.stream().anyMatch(Prova::isSuperata);
+
+        if (giaSuperata) {
+            return "Prova già superata per questo corso";
         }
-        Prova prova = new Prova(voto, oggi, studente, corso);
+
+        Prova prova = new Prova(voto, new Date(), studente, corso);
         provaRepository.save(prova);
         return null;
     }

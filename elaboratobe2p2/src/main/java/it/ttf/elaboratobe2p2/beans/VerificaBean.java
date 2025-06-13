@@ -34,9 +34,12 @@ public class VerificaBean {
      */
     @PostConstruct
     public void init() {
-        studenti = studenteRepository.findAll();
+
     }
 
+    public List<Studente> getStudenti() {
+        return studenteRepository.findAllByOrderByCognomeAscNomeAsc();
+    }
     /**
      * Calcola e restituisce la media dei voti per uno specifico studente.
      * @param studente Lo studente di cui calcolare la media

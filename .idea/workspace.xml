@@ -9,7 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7371bf9e-3436-4f8a-8fec-db05e9936997" name="Changes" comment="Risolto bug relativo corsi non superati" />
+    <list default="true" id="7371bf9e-3436-4f8a-8fec-db05e9936997" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans/StudenteBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/gestioneStudenti.xhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/template.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans/ProvaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans/RegistrazioneProvaBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans/VerificaBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans/VerificaBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/repositories/StudenteRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/repositories/StudenteRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/services/ProvaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/services/ProvaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/registrazioneProva.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/registrazioneProva.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/verificaStato.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/elaboratobe2p2/src/main/webapp/verificaStato.xhtml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,11 +41,10 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="studenti" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -37,6 +52,35 @@
     &quot;assignee&quot;: &quot;martinalbanese&quot;
   }
 }</component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1749829112" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="studenti" />
+                    <option name="lastUsedInstant" value="1749829071" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="proveEsami" />
+                    <option name="lastUsedInstant" value="1749828620" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/martinalbanese/elaboratoBE2P2.git&quot;,
@@ -64,6 +108,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;JUnit.All in elaboratobe2p2.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
     &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
     &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
     &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
@@ -72,9 +117,9 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;Spring Boot.Elaboratobe2p2Application.executor&quot;: &quot;Run&quot;,
     &quot;Tomcat Server.Tomcat.executor&quot;: &quot;Debug&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;proveEsami&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/MARTINAALBANESE/IdeaProjects/elaboratoBE2P2/elaboratobe2p2/src/main/webapp&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/MARTINAALBANESE/IdeaProjects/elaboratoBE2P2/elaboratobe2p2/src/main/java/it/ttf/elaboratobe2p2/beans&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -89,6 +134,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MARTINAALBANESE\IdeaProjects\elaboratoBE2P2\elaboratobe2p2\src\main\java\it\ttf\elaboratobe2p2\beans" />
       <recent name="C:\Users\MARTINAALBANESE\IdeaProjects\elaboratoBE2P2\elaboratobe2p2\src\main\webapp" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -231,6 +277,9 @@
       <list>
         <item itemvalue="Spring Boot.Elaboratobe2p2Application" />
         <item itemvalue="JUnit.All in elaboratobe2p2" />
+        <item itemvalue="Spring Boot.Elaboratobe2p2Application" />
+        <item itemvalue="JUnit.All in elaboratobe2p2" />
+        <item itemvalue="Spring Boot.Elaboratobe2p2Application" />
       </list>
     </recent_temporary>
   </component>
@@ -264,6 +313,9 @@
       <workItem from="1746882992727" duration="4625000" />
       <workItem from="1746954814129" duration="665000" />
       <workItem from="1748411723169" duration="3803000" />
+      <workItem from="1749828578606" duration="347000" />
+      <workItem from="1749828956352" duration="422000" />
+      <workItem from="1749829444490" duration="302000" />
     </task>
     <task id="LOCAL-00001" summary="sistemazione errori nel backend (con mock dati)">
       <option name="closed" value="true" />
@@ -321,7 +373,23 @@
       <option name="project" value="LOCAL" />
       <updated>1748423369086</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="commit">
+      <option name="closed" value="true" />
+      <created>1749828905913</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1749828905913</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit">
+      <option name="closed" value="true" />
+      <created>1749829006355</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1749829006355</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -342,7 +410,24 @@
         </entry>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -354,7 +439,8 @@
     <MESSAGE value="Aggiunti i managed bean e le pagine JSF base per registrazione prove e verifica stato studenti (ancora senza PrimeFaces)" />
     <MESSAGE value="Aggiunto PrimeFaces nei file xhtml + gestione del tema in application.yml" />
     <MESSAGE value="Risolto bug relativo corsi non superati" />
-    <option name="LAST_COMMIT_MESSAGE" value="Risolto bug relativo corsi non superati" />
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
