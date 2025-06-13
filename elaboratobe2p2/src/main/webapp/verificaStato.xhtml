@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+>
+
+<h:head>
+    <title>Stato Studenti</title>
+</h:head>
+<h:body>
+    <h:form id="form">
+        <p:outputPanel style="max-width: 800px; margin: auto; margin-top: 30px;">
+            <h2>Stato Studenti</h2>
+
+            <ui:repeat value="#{verificaBean.studenti}" var="studente">
+                <p:panel header="Studente: #{studente.nome}" style="margin-bottom: 20px;">
+                    <p><strong>Media Voti:</strong> #{verificaBean.getMediaVoti(studente)}</p>
+
+                    <p><strong>Corsi da superare:</strong></p>
+
+                    <ul>
+                        <ui:repeat value="#{verificaBean.getCorsiNonSuperati(studente)}" var="corso">
+                            <li>#{corso.nome}</li>
+                        </ui:repeat>
+                    </ul>
+                </p:panel>
+            </ui:repeat>
+
+
+            <p:commandButton value="Registra Prova" icon="pi pi-plus"
+                             action="registrazioneProva.xhtml?faces-redirect=true"
+                             styleClass="ui-button-primary" style="margin-top: 20px;"/>
+        </p:outputPanel>
+    </h:form>
+
+</h:body>
+</html>
