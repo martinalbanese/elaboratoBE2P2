@@ -4,7 +4,13 @@ spring:
     url: jdbc:mysql://localhost:3306/esami
     username: test
     password: test
-    driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
+  web:
+    resources:
+      add-mappings: true
+
+joinfaces:
+  primefaces:
+    theme: saga
