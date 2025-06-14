@@ -1,0 +1,45 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui"
+        template="template.xhtml">
+
+    <ui:define name="title">Gestione Corsi</ui:define>
+
+    <ui:define name="content">
+        <p:panel header="Gestione Corsi" style="max-width: 800px; margin: auto; margin-top: 40px;">
+            <!-- Form inserimento -->
+            <h:form id="inserimentoCorsoForm">
+                <p:messages id="msg" closable="true" showDetail="false" />
+                <p:panelGrid columns="2" style="width:100%;" columnClasses="label,value">
+                    <h:outputLabel for="nome" value="Nome Corso:"/>
+                    <p:inputText id="nome" value="#{corsoBean.corso.nome}" required="true" />
+
+                    <f:facet name="footer">
+                        <p:commandButton value="Salva" action="#{corsoBean.salvaCorso}" update="@form elencoCorsiForm"
+                                         icon="pi pi-save" styleClass="ui-button-success"/>
+                    </f:facet>
+                </p:panelGrid>
+            </h:form>
+
+            <p:separator/>
+
+            <!-- Tabella elenco corsi -->
+            <h:form id="elencoCorsiForm">
+                <p:dataTable value="#{corsoBean.corsi}" var="c" responsiveLayout="scroll" style="margin-top: 20px; width: 100%;">
+                    <p:column headerText="Nome Corso">
+                        #{c.nome}
+                    </p:column>
+                    <p:column headerText="Azioni" style="min-width: 150px; white-space: nowrap;">
+                        <div style="display: flex; gap: 10px;">
+                            <p:commandButton value="Elimina" action="#{corsoBean.eliminaCorso(c)}"
+                                             update="elencoCorsiForm" icon="pi pi-trash" styleClass="ui-button-danger"/>
+                        </div>
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </p:panel>
+    </ui:define>
+</ui:composition>

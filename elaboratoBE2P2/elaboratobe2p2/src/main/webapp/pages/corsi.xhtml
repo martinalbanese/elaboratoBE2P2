@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Gestione Corsi</title>
+</h:head>
+<h:body>
+    <h:form>
+
+        <h2>Lista Corsi</h2>
+        <p:dataTable value="#{corsoBean.corsi}" var="c">
+            <p:column headerText="ID">
+                <h:outputText value="#{c.id}" />
+            </p:column>
+            <p:column headerText="Nome">
+                <h:outputText value="#{c.nome}" />
+            </p:column>
+        </p:dataTable>
+
+        <h2>Nuovo Corso</h2>
+        <p:panel header="Aggiungi Corso">
+            <p:inputText value="#{corsoBean.nuovoCorso.nome}" placeholder="Nome corso" />
+            <p:commandButton value="Salva" action="#{corsoBean.salva}" update="@form" />
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>
